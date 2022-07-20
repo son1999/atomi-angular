@@ -1,0 +1,22 @@
+.tabs{
+  .tab-nav{
+    background-color: $tab-title-bg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: $tab-radius;
+    margin-bottom: 20px;
+    .item{
+      color:$tab-title-color;
+      flex:1;
+      cursor: pointer;
+      padding:10px 15px;
+      border-radius: $tab-radius;
+      &.active{
+        background-color: $tab-title-active-bg;
+        color: $tab-title-active-color;
+      }
+    }
+  }
+}

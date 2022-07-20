@@ -1,0 +1,5 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M45 45H20V50H45V45Z" fill="white"/>
+<path d="M35 60L35 35L30 35L30 60L35 60Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M25 15L30 10H65L70 15V50L65 55H55V65L50 70H15L10 65V30L15 25H25V15ZM30 25H50L55 30V50H65V15H30V25ZM50 30H15V65H50V30Z" fill="white"/>
+</svg>

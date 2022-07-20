@@ -1,0 +1,15 @@
+.theme-default.custom-style{
+  .bs-datepicker-head{
+    background-color: $primary;
+  }
+  .bs-datepicker-body{
+    table{
+      th{
+        color: $primary;
+      }
+      td.week span{
+        color: rgba($primary, 0.6);
+      }
+    }
+  }
+}

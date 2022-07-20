@@ -1,0 +1,237 @@
+/* Reset */
+.aside-menu-wrapper{
+  height: 100%;
+}
+.aside-menu {
+  height: 100%;
+  box-shadow: 0px 0px 15px rgba(142, 142, 142, 0.2);
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  border: 1px solid #dddddd9e;
+  .card {
+    border: 0;
+    background: none;
+    border-radius: 0;
+    .card-header {
+      padding: 0;
+      background: none;
+      border-radius: 0;
+      border: 0;
+    }
+    .card-body {
+      padding: 0;
+    }
+  }
+
+
+  .menu-title{
+    background-color: $primary;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0;
+    color: #fff;
+    font-weight: 700;
+    height: 54px;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  .menu-items{
+    height: calc(100% - 54px);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F6F6F6;
+    padding: 10px 10px 10px 20px;
+    margin-bottom: 1px;
+    .item-title {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-weight: 500;
+      color: #000;
+      .item-icon {
+        min-width: 30px;
+        svg {
+          width: 23px;
+          display: inline-block;
+          height: 23px;
+        }
+      }
+    }
+    .ic-toggle {
+      svg {
+        width: 18px;
+        display: inline-block;
+        height: 18px;
+      }
+    }
+    &.is-open{
+      .item-title{
+        color: $primary;
+      }
+    }
+    &.is-active{
+      .item-title{
+        color: $secondary;
+      }
+    }
+  }
+  
+  /* LV 1 Items */
+  .sub-menu-lv-1{
+    padding: 5px 0 5px 20px;
+  }
+  .menu-item-lv-1{
+    display: flex;
+    padding: 5px 10px 5px 30px;
+    align-items: center;
+    justify-content: space-between;
+    .item-title {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      color: #000;
+      font-weight: 500;
+      .item-icon {
+        min-width: 30px;
+        svg {
+          width: 23px;
+          display: inline-block;
+          height: 23px;
+        }
+      }
+    }
+    .ic-toggle {
+      svg {
+        width: 18px;
+        display: inline-block;
+        height: 18px;
+      }
+    }
+    &.is-open{
+      .item-title{
+        color: $primary;
+      }
+    }
+    &.is-active{
+      .item-title{
+        color: $secondary;
+      }
+    }
+  }
+  
+  /* LV 2 Items */
+  .sub-menu-lv-2{
+  }
+  
+  .menu-item-lv-2{
+    display: flex;
+    padding: 6px 10px 6px 30px;
+    align-items: center;
+    justify-content: space-between;
+    .item-title {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .dot{
+        width: 8px;
+      height: 8px;
+      background: #585858;
+      border-radius: 100%;
+      margin-right: 10px;
+      }
+      .item-icon {
+        min-width: 30px;
+        svg {
+          width: 23px;
+          display: inline-block;
+          height: 23px;
+        }
+      }
+    }
+    .ic-toggle {
+      svg {
+        width: 18px;
+        display: inline-block;
+        height: 18px;
+      }
+    }
+    &.is-open{
+      .item-title{
+        color: $primary;
+        .dot{
+          background-color: $primary;
+        }
+      }
+    }
+    &.is-active{
+      .item-title{
+        color: $secondary;
+        .dot{
+          background-color: $secondary;
+        }
+      }
+    }
+  }
+  
+  /* LV 3 Items */
+  .sub-menu-lv-3{
+  }
+  
+  .menu-item-lv-3{
+    display: flex;
+    padding: 6px 10px 6px 48px;
+    align-items: center;
+    justify-content: space-between;
+    .item-title {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .dot{
+        width: 8px;
+      height: 8px;
+      background: #585858;
+      border-radius: 100%;
+      margin-right: 10px;
+      }
+      .item-icon {
+        min-width: 30px;
+        svg {
+          width: 23px;
+          display: inline-block;
+          height: 23px;
+        }
+      }
+    }
+    .ic-toggle {
+      svg {
+        width: 18px;
+        display: inline-block;
+        height: 18px;
+      }
+    }
+    &.is-open{
+      .item-title{
+        color: #000;
+        font-weight: 500;
+        .dot{
+          background-color: #000;
+        }
+      }
+    }
+    &.is-active{
+      .item-title{
+        color: $secondary;
+        font-weight: 500;
+        .dot{
+          background-color: $secondary;
+        }
+      }
+    }
+  }
+  
+}
+

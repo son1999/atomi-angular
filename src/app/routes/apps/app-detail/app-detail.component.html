@@ -1,0 +1,80 @@
+<div class="page-wrapper" *ngIf="app != null">
+  <div class="container">
+    <div class="page-main">
+      <div class="page-content">
+        <div class="row">
+          <div class="col-md-12 col-lg-3">
+            <div class="left-block">
+              <div class="first-letter-block">
+                <span *ngIf="!app.appIcon || app.appIcon.length == 0">{{ app.name[0] }}</span>
+                <img [src]="'data:image/jpeg;base64,' + app.appIcon" alt="" *ngIf="app.appIcon && app.appIcon.length > 0" />
+              </div>
+              <h1 class="color-title">{{ app.name }}</h1>
+              <p>{{ app.description }}</p>
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-9">
+            <div class="update-info">
+              <div class="page-title">
+                <h1 class="color-title">
+                  Thông tin truy cập API
+                  <div class="action-delete" title="Xóa ứng dụng" (click)="deleteApp()"><i class="fa fa-close"></i></div>
+                </h1>
+              </div>
+              <div class="form">
+                <div class="form-field">
+                  <label for="">Client ID</label>
+                  <div class="custom-field">
+                    <input type="text" [ngModel]="showPanel.isShowClientId ? app.clientId : '***'" [disabled]="true" />
+                    <div class="custom-actions">
+                      <div class="action show" (click)="showPanel.isShowClientId = !showPanel.isShowClientId"><i class="fa fa-eye"></i></div>
+                      <div class="action change" (click)="refresh('CLIENT_ID')">Lấy mã mới</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="">Client Secret</label>
+                  <div class="custom-field">
+                    <input type="text" [ngModel]="showPanel.isShowClientSecret ? app.clientSecret : '***'" [disabled]="true" />
+                    <div class="custom-actions">
+                      <div class="action show" (click)="showPanel.isShowClientSecret = !showPanel.isShowClientSecret"><i class="fa fa-eye"></i></div>
+                      <div class="action change" (click)="refresh('CLIENT_SECRET')">Lấy mã mới</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="">Public key bạn cung cấp cho Gaia</label>
+                  <div class="custom-field">
+                    <textarea type="text" [ngModel]="showPanel.isShowClientPublicKey ? app.clientPublicKey : '***'" [disabled]="true"></textarea>
+                    <div class="custom-actions">
+                      <div class="action show" (click)="showPanel.isShowClientPublicKey = !showPanel.isShowClientPublicKey"><i class="fa fa-eye"></i></div>
+                      <div class="action change" (click)="changePublicKey()">Đổi public key</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="">Callback URL</label>
+                  <input type="text" [(ngModel)]="app.callbackURL" [disabled]="true" placeholder="https://" />
+                </div>
+                <div class="form-field">
+                  <label for=""><b class="color-title">Public Key Gaia cung cấp cho bạn</b></label>
+                  <p><small>Dùng để mã hóa dữ liệu giữa 2 bên để hiểu rõ hơn cách tạo và sử dụng public key</small><small class="text-primary">  |  Xem thêm</small></p>
+                  <div class="custom-field">
+                    <textarea type="text" [ngModel]="showPanel.isShowServerPublicKey ? app.spiderPublicKey : '***'" [disabled]="true"></textarea>
+                    <div class="custom-actions">
+                      <div class="action show" (click)="showPanel.isShowServerPublicKey = !showPanel.isShowServerPublicKey"><i class="fa fa-eye"></i></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button class="btn btn-primary w-100" (click)="download()"><i class="fa fa-download" style="margin-right: 10px"></i> Download Public Key</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

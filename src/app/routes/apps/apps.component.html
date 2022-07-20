@@ -1,0 +1,44 @@
+<!-- <div class="container">
+  <a [routerLink]="['/apps/create']">xxx</a>
+</div> -->
+<div class="app-wrapper" *ngIf="items != null">
+  <div class="container">
+    <div class="page-title">
+      <h1 class="color-title">Danh sách ứng dụng đăng ký truy cập SDK</h1>
+      <button class="btn btn-primary" *ngIf="items.length > 0" [routerLink]="['/apps/create']">Tạo ứng dụng mới</button>
+    </div>
+    <div class="page-content">
+      <ng-container *ngIf="items.length > 0; else noItems">
+        <div class="items">
+          <div class="row">
+            <div class="col-6" *ngFor="let item of items">
+              <div class="item"  [routerLink]="['/apps/detail/' +item.id]">
+                <div class="item-icon">
+                  <span *ngIf="!item.appIcon || item.appIcon.length == 0">{{item.name[0]}}</span>
+                  <img [src]="'data:image/jpeg;base64,' +item.appIcon" alt="" *ngIf="item.appIcon && item.appIcon.length > 0">
+                </div>
+                <div class="item-content">
+                  <h2 class="color-title">
+                    {{ item.name }}
+                  </h2>
+                  <p>{{ item.description }}</p>
+                  <!-- <span class="type">SDK</span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #noItems>
+  <div class="no-item">
+    <div class="no-item-content">
+      <img src="/assets/icons/png/api_icon.png" alt="" />
+      <p>Bạn hiện chưa đăng ký ứng dụng nào, vui lòng tạo ứng dụng mới để lấy thông tin truy cập AP</p>
+      <button class="btn btn-primary" [routerLink]="['/apps/create']">Tạo ứng dụng mới</button>
+    </div>
+  </div>
+</ng-template>

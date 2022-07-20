@@ -1,0 +1,187 @@
+<div class="aside-menu-wrapper">
+  <div class="aside-menu">
+    <!-- begin::Menu Nav -->
+    <div class="menu-title">Danh mục</div>
+    <div class="menu-nav menu-items">
+      <!-- ROOT ITEMS -->
+      <accordion [closeOthers]="true" [isAnimated]="true">
+        <ng-container *ngFor="let item of items">
+          <accordion-group
+            [isDisabled]="!item.subs || item.subs.length == 0"
+            (isOpenChange)="isOpenChange($event, item)"
+          >
+            <div
+              class="menu-item {{isOpen(item) ? 'is-open' : ''}} {{isActive(item) ? 'is-active' : ''}}"
+              accordion-heading
+              (click)="onClickMenuItem(item)"
+            >
+              <div class="item-title">
+                <span
+                  class="item-icon"
+                  *ngIf="item.svg"
+                  aria-label="item icon"
+                  [cacheSVG]="true"
+                  [inlineSVG]="ic_path + item.svg"
+                ></span>
+                {{ item.title }}
+              </div>
+              <div class="ic-toggle" *ngIf="item.subs && item.subs.length > 0">
+                <ng-container
+                  *ngIf="isOpen(item)"
+                  [ngTemplateOutlet]="ICDown"
+                ></ng-container>
+                <ng-container
+                  *ngIf="!isOpen(item)"
+                  [ngTemplateOutlet]="ICRight"
+                ></ng-container>
+              </div>
+            </div>
+            <!-- Sub Lv 1 -->
+            <ng-container
+              *ngIf="item.subs && item.subs.length > 0"
+              [ngTemplateOutlet]="SubLv1"
+              [ngTemplateOutletContext]="{ subItems: item.subs }"
+            ></ng-container>
+          </accordion-group>
+        </ng-container>
+      </accordion>
+    </div>
+    <!-- end::Menu Nav -->
+  </div>
+</div>
+
+<!-- Sub Lv 1 -->
+
+<ng-template #SubLv1 let-subItems="subItems">
+  <div class="sub-menu-lv-1">
+    <accordion [closeOthers]="true" [isAnimated]="true">
+      <ng-container *ngFor="let item of subItems">
+        <accordion-group [isDisabled]="!item.subs || item.subs.length == 0" (isOpenChange)="isOpenChange($event, item)">
+          <div
+            class="menu-item-lv-1 {{isOpen(item) ? 'is-open' : ''}} {{isActive(item) ? 'is-active' : ''}}"
+            accordion-heading
+            (click)="onClickMenuItem(item)"
+          >
+            <div class="item-title">
+              <span
+                class="item-icon"
+                *ngIf="item.svg"
+                aria-label="item icon"
+                [cacheSVG]="true"
+                [inlineSVG]="ic_path + item.svg"
+              ></span>
+              {{ item.title }}
+            </div>
+            <div class="ic-toggle" *ngIf="item.subs && item.subs.length > 0">
+              <ng-container
+                *ngIf="isOpen(item)"
+                [ngTemplateOutlet]="ICDown"
+              ></ng-container>
+              <ng-container
+                *ngIf="!isOpen(item)"
+                [ngTemplateOutlet]="ICRight"
+              ></ng-container>
+            </div>
+          </div>
+          <!-- Sub Lv 2 -->
+          <ng-container
+            *ngIf="item.subs && item.subs.length > 0"
+            [ngTemplateOutlet]="SubLv2"
+            [ngTemplateOutletContext]="{ subItems: item.subs }"
+          ></ng-container>
+        </accordion-group>
+      </ng-container>
+    </accordion>
+  </div>
+</ng-template>
+
+<!-- Sub lv 2 -->
+<ng-template #SubLv2 let-subItems="subItems">
+  <div class="sub-menu-lv-2">
+    <accordion [closeOthers]="true" [isAnimated]="true">
+      <ng-container *ngFor="let item of subItems">
+        <accordion-group
+          [isDisabled]="!item.subs || item.subs.length == 0"
+          (isOpenChange)="isOpenChange($event, item)"
+        >
+          <div
+          class="menu-item-lv-2 {{isOpen(item) ? 'is-open' : ''}} {{isActive(item) ? 'is-active' : ''}}"
+            accordion-heading
+            (click)="onClickMenuItem(item)"
+          >
+            <div class="item-title">
+              <span class="dot"></span>
+              {{ item.title }}
+            </div>
+            <div class="ic-toggle" *ngIf="item.subs && item.subs.length > 0">
+              <ng-container
+                *ngIf="isOpen(item)"
+                [ngTemplateOutlet]="ICDown"
+              ></ng-container>
+              <ng-container
+                *ngIf="!isOpen(item)"
+                [ngTemplateOutlet]="ICRight"
+              ></ng-container>
+            </div>
+          </div>
+          <ng-container
+          *ngIf="item.subs && item.subs.length > 0"
+          [ngTemplateOutlet]="SubLv3"
+          [ngTemplateOutletContext]="{ subItems: item.subs }"
+        ></ng-container>
+        </accordion-group>
+      </ng-container>
+    </accordion>
+  </div>
+</ng-template>
+
+<!-- Sub lv 3 -->
+<ng-template #SubLv3 let-subItems="subItems">
+  <div class="sub-menu-lv-3">
+    <accordion [closeOthers]="true" [isAnimated]="true">
+      <ng-container *ngFor="let item of subItems">
+        <accordion-group
+          [isDisabled]="!item.subs || item.subs.length == 0"
+          (isOpenChange)="isOpenChange($event, item)"
+        >
+          <div
+          class="menu-item-lv-3 {{isOpen(item) ? 'is-open' : ''}} {{isActive(item) ? 'is-active' : ''}}"
+            accordion-heading
+            (click)="onClickMenuItem(item)"
+          >
+            <div class="item-title">
+              {{ item.title }}
+            </div>
+            <div class="ic-toggle" *ngIf="item.subs && item.subs.length > 0">
+              <ng-container
+                *ngIf="isOpen(item)"
+                [ngTemplateOutlet]="ICDown"
+              ></ng-container>
+              <ng-container
+                *ngIf="!isOpen(item)"
+                [ngTemplateOutlet]="ICRight"
+              ></ng-container>
+            </div>
+          </div>
+        </accordion-group>
+      </ng-container>
+    </accordion>
+  </div>
+</ng-template>
+
+<!-- Icon Right -->
+<ng-template #ICRight>
+  <span
+    aria-label="ic right"
+    [cacheSVG]="true"
+    [inlineSVG]="'assets/icons/svg/ic_chevron_right.svg'"
+  ></span>
+</ng-template>
+<!-- Icon Down -->
+<ng-template #ICDown>
+  <span
+    aria-label="ic down"
+    [cacheSVG]="true"
+    [inlineSVG]="'assets/icons/svg/ic_chevron_down.svg'"
+  ></span>
+</ng-template>

@@ -1,0 +1,18 @@
+<div class="block step-integrated">
+  <h1>Các bước đăng ký & tích hợp</h1>
+  <div class="block-content">
+    <div class="steps">
+      <div class="row">
+        <div class="step col-sm-6 col-md-4 col-xl-2" *ngFor="let i of steps">
+          <div class="step-content">
+            <div class="icon">
+              <img src="assets/icons/png/{{ i.icon }}" alt="" />
+            </div>
+            <h2 class="name">{{ i.name }}</h2>
+            <div class="des">{{ i.des }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

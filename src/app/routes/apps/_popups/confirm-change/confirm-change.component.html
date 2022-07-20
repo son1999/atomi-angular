@@ -1,0 +1,17 @@
+
+  <div class="modal-dialog-centered text-center" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="font-weight-bold mb-4"><strong>Bạn có muốn đổi Client ID mới?</strong></h3>
+        <p class="mb-1">Chúng tôi sẽ cung cấp cho bạn {{type && type == 'CLIENT_ID' ? 'Client Id': 'Client Secret'}} mới và hủy {{type && type == 'CLIENT_ID' ? 'Client Id': 'Client Secret'}} Cũ đi.</p>
+        <p class="mb-1">Sau khi đổi thông tin mới vui lòng cập nhật lại thông tin trên ứng dụng để truy cập API</p>
+        <button type="button" class="btn-close close" aria-label="Close" (click)="hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+        <div class="actions d-flex justify-content-center mt-0 mb-5">
+          <button class="btn btn-primary cancel" (click)="hide()">Hủy</button>
+          <button class="btn btn-primary" (click)="submit()">Đổi mới</button>
+      </div>
+    </div>
+  </div>

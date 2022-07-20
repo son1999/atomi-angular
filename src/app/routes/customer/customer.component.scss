@@ -1,0 +1,42 @@
+@import '../../../assets/styles/sources/variables';
+.page-title{
+  padding-top: 30px;
+}
+.first-letter-block{
+  border: 0.5px solid #C4C4C4;
+  background-color: #fff;
+  border-radius: 5px;
+  height: 280px;
+  display: flex;
+  font-size: 190px;
+  justify-content: center;
+  align-items: center;
+  color: $primary;
+}
+.form-actions{
+  display: flex;
+  justify-content: flex-start;
+  & >  *{
+    width: 33%!important;
+  }
+  .enter-capcha{
+    margin: 0 10px;
+  }
+}
+.update-info{
+  padding-left: 35px;
+}
+.page-wrapper{
+  padding-bottom: 50px;
+}
+
+@media (max-width: 991px) {
+  .update-info{
+    padding-left: 0;
+    padding-top: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  
+}

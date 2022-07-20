@@ -1,0 +1,28 @@
+.banner-slider-1{
+  .owl-carousel{
+    border: 1px solid $border-color;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .owl-dots{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    .owl-dot{
+      width: 16px;
+      height: 16px;
+      margin: 5px;
+      background-color: #fff;
+      border: 1px solid $primary;
+      cursor: pointer;
+      border-radius: 100%;
+      span{
+        display: none;
+      }
+      &.active{
+        background-color: $primary;
+      }
+    }
+  }
+}

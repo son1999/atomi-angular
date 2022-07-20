@@ -1,0 +1,37 @@
+.environment-integrated {
+  margin-bottom: 50px;
+  .row{
+    & > div{
+      margin-bottom: 30px;
+    }
+  }
+  .left-content {
+    color: #252525;
+    background: #ffffff;
+    border: 0.5px solid #c4c4c4;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding:30px;
+    background-image: url('../../../../assets/images/png/environment_laptop.png');
+    background-repeat: no-repeat;
+    background-position: right 30px center;
+    background-size: 247px;
+  }
+  .right-content{
+    background-image: url('../../../../assets/images/png/environment_banner.png');
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 75px 20px 20px;
+    color: #fff;
+    button{
+      color: #3669C9;
+      background-color: #fff;
+      border-radius: 40px;
+      height: 50px;
+      min-width: 160px;
+    }
+  }
+}

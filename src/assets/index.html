@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>OK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="This store is powered by PrestaShop" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/select2.min.css" rel="stylesheet">
+        <link href="assets/css/select2-bootstrap-5-theme.min.css" rel="stylesheet">
+        <style>
+            body,html {
+                height: 100%;
+            }
+        </style>    
+    </head>
+    <body>
+        <div class="container text-center">
+            <br/>
+            <h1>Long</h1>
+            <br/>
+            <div class="row">
+                <div class="col-12">
+                    <div id="long" style="word-wrap: break-word;"></div>
+                </div>
+            </div>
+            <br/>
+            <h1>Short</h1>
+            <br/>
+            <div class="row">
+                <div class="col-12">
+                    <div id="short" style="word-wrap: break-word;"></div>
+                </div>
+            </div>
+        </div>
+		<script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="assets/js/select2.min.js"></script>
+        <script type="text/javascript" src="assets/js/script.js"></script>
+        <script type="text/javascript">
+            exchangeInfo();
+
+            function ema(n, data, is_arr = false){
+                var price = 0;
+                var k = 2 / (n + 1);
+                var ema_T = 0;
+                var ema_Y = 0;
+                var ema = [];
+
+                for (var i in data) {
+                    price = data[i];
+
+                    ema_T = price * k + ema_Y * (1 - k);
+                    ema_Y = ema_T;
+                    ema.push(ema_T);
+                }
+
+                if(is_arr){
+                    return ema;
+                }else{
+                    return ema[ema.length - 1];
+                }
+            }
+
+            function macd(fast_length, slow_length, signal_length, data, is_arr = false){
+                var fast_ema = ema(fast_length, data, true);
+                var slow_ema = ema(slow_length, data, true);
+
+                var macd = [];
+                var hist = [];
+
+                for (var i in data) {
+                    macd.push(fast_ema[i] - slow_ema[i]);
+                }
+
+                var signal = ema(signal_length, macd, true);
+
+                for (var i in data) {
+                    hist.push(macd[i] - signal[i]);
+                }
+
+                if(is_arr){
+                    return hist;
+                }else{
+                    return hist[hist.length - 1];
+                }
+            }
+
+            function options(symbol, xh1, xh2){
+                var hist_1 = macd(12, 26, 9, xh1, true);
+                var hist_2 = macd(12, 26, 9, xh2, true);
+                
+                var link = `<a target="_blank" href='https://www.tradingview.com/chart/zU8wqeiY/?symbol=BINANCE:${symbol}'>${symbol}</a>`;
+
+                if(hist_1[hist_1.length - 1] >= 0 && hist_2[hist_2.length - 1] >= 0 && (hist_2[hist_2.length - 2] <= 0 || hist_2[hist_2.length - 3] <= 0 || hist_2[hist_2.length - 4] <= 0 || hist_2[hist_2.length - 5] <= 0)){
+                    $('#long').append(link);
+                    $('#long').append('<br/>');
+                }
+
+                if(hist_1[hist_1.length - 1] < 0 && hist_2[hist_2.length - 1] < 0 && (hist_2[hist_2.length - 2] > 0 || hist_2[hist_2.length - 3] > 0 || hist_2[hist_2.length - 4] > 0 || hist_2[hist_2.length - 5] > 0)){
+                    $('#short').append(link);
+                    $('#short').append('<br/>');
+                }
+            }
+            
+            function exchangeInfo(){
+                $.ajax({
+                    url: `https://api.binance.com/api/v3/exchangeInfo`, 
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(result){
+                      const symbols = result.symbols.filter(i => i.status == 'TRADING' && i.quoteAsset == 'USDT').map(i => i.symbol);
+                      handleData(symbols);
+                    }
+                });
+            }
+            function klines(symbol, interval = '1d', xh1 = []){
+              return new Promise((resolve) => {
+                $.ajax({
+                    url: `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=500`, 
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(result){
+                        if(xh1.length < 1){
+                            resolve(result);
+                        }else{
+                            var data1 = [];
+                            var data2 = [];
+
+                            for (var i in xh1) {
+                                data1.push(xh1[i][4]);
+                            }
+
+                            for (var i in result) {
+                                data2.push(result[i][4]);
+                            }
+
+                            options(symbol, data1, data2);
+                        }
+                        resolve(false);
+                    }
+                });
+              })
+                
+            }
+            async function  handleData(symbols = []){
+                for(let i =0 ; i< symbols.length; i ++){
+                  const tester = await klines(symbols[i]);
+                  if(tester){
+                    await klines(symbols[i], '4h', tester)
+                  }
+                }
+            }
+        </script>
+    </body>
+</html>

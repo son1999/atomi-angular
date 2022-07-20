@@ -1,0 +1,27 @@
+<ng-container *ngIf="customerInfo != null">
+  <div class="user-block">
+    <div class="btn-group" placement="bottom right" dropdown>
+      <div id="button-animated" dropdownToggle class="dropdown-toggle" aria-controls="dropdown-animated">
+        <span class="customer-name">Hi! {{ customerInfo?.name }}</span>
+        <span class="first-letter">{{ getFirstLetterFromName() }}</span>
+      </div>
+      <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="button-animated">
+        <li role="menuitem">
+          <a class="dropdown-item" [routerLink]="['/customer']">Thông tin cá nhân</a>
+        </li>
+        <li role="menuitem">
+          <a class="dropdown-item" [routerLink]="['/customer/change-password']">Đổi mật khẩu</a>
+        </li>
+        <li role="menuitem">
+          <a class="dropdown-item pointer" (click)="logout()">Đăng xuất</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="!customerInfo">
+  <div class="account-links">
+    <button class="btn btn-primary w-100" type="button" [routerLink]="['/register']">Đăng ký</button>
+    <button class="btn btn-primary w-100" type="button" [routerLink]="['/login']">Đăng nhập</button>
+  </div>
+</ng-container>

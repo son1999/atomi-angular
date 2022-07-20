@@ -1,0 +1,74 @@
+ngx-select-dropdown{
+  display: flex;
+  width: 100%;
+  .ngx-dropdown-container{
+    border: 0;
+    .ngx-dropdown-button{
+      border: 1px solid $input-border-color!important;
+      font-size: 15px!important;
+      width: 100%!important;
+      line-height: normal!important;
+      color: $input-text-color!important;
+      outline: none!important;
+      border-radius: 0.25rem!important;
+      height: 38px!important;
+      border-radius: $input-border-radius!important;
+      padding: 5px 10px!important;
+      background-color: $input-bg-color!important;
+
+      &:disabled {
+        background: #ddd!important;
+        cursor: not-allowed!important;
+      }
+      &:focus{
+        border: 1px solid $primary!important;
+        background-color: $input-bg-color!important;
+        box-shadow: 0 0 0 0.2rem rgba($primary, 0.3)!important;
+      }
+      .nsdicon-angle-down{
+        right: -5px!important;
+        &::before{
+          content: '\f107'!important;
+          font-family: $font-icon!important;
+          transform: none!important;
+          border: 0!important;
+          font-size: 16px;
+          font-weight: bold;
+          width: auto!important;
+        }
+      }
+    }
+    .ngx-dropdown-list-container{
+      border: 1px solid $input-border-color!important;
+      padding-left: 10px!important;
+      padding-right:  10px!important;
+      .search-container{
+        padding-top: 5px!important;
+        input{
+          border-bottom: 1px solid $input-border-color!important;
+          &:focus{
+            border-color:$primary!important;
+          }
+        }
+      }
+      .selected-items{
+        margin-top: 10px!important;
+        margin-bottom: 10px!important;
+        li{
+          background-color: $primary!important;
+          padding: 3px 10px!important;
+        }
+      }
+      hr{
+        display: none!important;
+      }
+      .available-items{
+        margin-top: 10px!important;
+        margin-bottom: 10px!important;
+        li{
+          padding: 3px 0!important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "AUTH":{
+    "ALERT": {
+      "LOGIN_SUCCESS": "Đăng nhập thành công"
+    },
+    "ERRORS": {
+      "LOGIN_FAIL": "Thông tin đăng nhập không chính xác.",
+      "REQUIRE_FIELD": "Thông tin này không được để trống",
+      "SESSION_EXPIRED": "Phiên giao dịch hết hạn, vui lòng đăng nhập lại!"
+    }
+  },
+  "CHECKER":{
+    "APPROVE_WAIT":{
+      "TABLE_TITLE": "Danh sách chờ duyệt"
+    }
+  },
+  "BASE":{
+    "HOME": "Trang chủ",
+    "SEARCH": "Tìm kiếm",
+    "REQUEST_ERROR": "Kết nối tới Server không thành công!",
+    "ERROR": "Có lỗi vui lòng thử lại!",
+    "REQUIRE_FIELD": "Bắt buộc"
+  },
+  "MENU":{
+    "TITLE": "Danh mục",
+    "KHDN": "Khách hàng doanh nghiệp",
+    "KHCN": "Khách hàng cá nhân"
+  }
+
+}

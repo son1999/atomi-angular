@@ -1,0 +1,65 @@
+
+@import '../../../../assets/styles/sources/variables';
+.user-block{
+  user-select: none;
+  margin-left: 20px;
+  color: $primary;
+  #button-animated{
+    padding: 2px 0;
+    cursor: pointer;
+    img{
+      max-width: 45px;
+    }
+    b{
+      margin-left: 10px;
+    }
+    i{
+      color: #777;
+      margin: 0 10px;
+    }
+    &::after{
+      display: none;
+    }
+  }
+  .customer-name{
+    color: $body-color;
+  }
+  .first-letter{
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    margin-left: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background: linear-gradient(90deg, #4555E0 1.55%, #4577F7 101.55%);
+  }
+}
+
+.account-links{
+  display: flex;
+  margin-left: 30px;
+  button{
+    display: inline-block;
+    margin-left: 10px;
+    height: 40px;
+    border-radius: 20px;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .account-links{
+    display: flex;
+    margin-left: 0;
+    button{
+      margin-left: 10px;
+    }
+  }
+  .user-block{
+    margin-left: 0;
+  }
+}

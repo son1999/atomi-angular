@@ -1,0 +1,49 @@
+@import "../../../assets/styles/sources/variables";
+.menu {
+  .menu-inner {
+    .menu-items {
+      padding: 0;
+      margin: 0;
+      .item {
+        display: inline-block;
+        line-height: 1;
+        border-radius: 5px;
+        cursor: pointer;
+        list-style: none;
+        .item-title {
+          padding: 8px 15px;
+          display: inline-block;
+          margin-left: 30px;
+          a {
+            color: $body-color;
+            &:hover {
+              color: $primary;
+            }
+          }
+        }
+
+        // &.active{
+        //   background-color: $primary;
+        //   .item-title{
+        //     color: #fff;
+        //   }
+        // }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .menu {
+    padding: 10px 0;
+    .menu-inner {
+      .menu-items {
+        .item {
+          .item-title {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}

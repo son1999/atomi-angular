@@ -1,0 +1,62 @@
+<div class="page-wrapper">
+  <div class="container">
+    <div class="page-main">
+      <div class="page-title">
+        <h1 class="color-title">Đăng ký ứng dụng mới</h1>
+      </div>
+      <div class="page-content">
+        <div class="row">
+          <div class="col-md-12 col-lg-3">
+            <div class="first-letter-block">
+              <span *ngIf="imgUrl.length === 0">
+                <i class="fa fa-camera"></i>
+                <p>Upload icon</p>
+              </span>
+              <ng-container *ngIf="imgUrl.length > 0">
+                <img [src]="imgUrl" alt="" />
+              </ng-container>
+              <input type="file" (change)="preview($event)" multiple="false" accept="image/x-png,image/gif,image/jpeg">
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-9">
+            <div class="update-info">
+              <form class="form" [formGroup]="valForm" name="loginForm" role="form" class="form form-validate" (submit)="submit($event, valForm.value)">
+                <div class="form-field">
+                  <label for="">Tên ứng dụng <span class="require">*</span></label>
+                  <input type="text" formControlName="name" autocomplete="off" maxlength="20"/>
+                  <p class="text-danger form-field-message" *ngIf="hasError('name', 'required')">Vui lòng nhập tên</p>
+                  <p class="text-danger form-field-message" *ngIf="hasError('name', 'maxlength')">Vui lòng nhập lại tên</p>
+
+                </div>
+                <div class="form-field">
+                  <label for="">Mô tả ứng dụng <span class="require">*</span></label>
+                  <textarea class="textarea-extend" type="text" formControlName="description" autocomplete="off" maxlength="300"> </textarea>
+                  <p class="text-danger form-field-message" *ngIf="hasError('description', 'required')">Vui lòng nhập mô tả</p>
+                  <p class="text-danger form-field-message" *ngIf="hasError('description', 'maxlength')">Bạn đã nhập quá ký tự cho phép</p>
+
+                </div>
+                <div class="form-field">
+                  <label for="">Public key <span class="require">*</span></label>
+                  <p></p>
+                  <p><small>Dùng để mã hóa dữ liệu giữa 2 bên để hiểu rõ hơn cách tạo và sử dụng public key</small><small class="text-primary"> | Xem thêm</small></p>
+                  <textarea type="text" formControlName="clientPublicKey" autocomplete="off" placeholder="-----BEGIN CERTIFICATE-----&#10;(Certificate value must be in PEM format)&#10;-----END CERTIFICATE-----"> </textarea>
+                  <p class="text-danger form-field-message" *ngIf="hasError('clientPublicKey', 'required')">Vui lòng nhập public key</p>
+                </div>
+                <div class="form-field">
+                  <label for="">Callback URL</label>
+                  <input type="text" formControlName="callbackURL" autocomplete="off" placeholder="https://"/>
+                  <p></p>
+                  <p><small>The URL authenticated OAuth flows for this application should be redirected to.</small></p>
+                </div>
+
+                <div class="form-actions">
+                  <button class="btn btn-primary w-100" type="submit" [disabled]="isLoading$ | async">Đăng ký</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

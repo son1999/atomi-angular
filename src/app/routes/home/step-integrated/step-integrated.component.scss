@@ -1,0 +1,30 @@
+h1 {
+  color: #252525;
+}
+
+.step-integrated {
+  h1{
+    margin-bottom: 30px;
+  }
+  .steps {
+    .step {
+      .step-content {
+        background: linear-gradient(34.01deg, #4555e0 0.62%, #4577f7 100%);
+        box-shadow: 0px 6px 5px rgba(47, 108, 199, 0.1);
+        backdrop-filter: blur(8px);
+        /* Note: backdrop-filter has minimal browser support */
+        border-radius: 20px;
+        padding: 80px 20px 20px; 
+        margin-bottom: 30px;
+        color: #fff;
+        .icon{
+          min-height: 50px;
+          margin-bottom: 20px;
+        }
+        h2{
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+<div class="pagination">
+  <ng-template #ellipsis>...</ng-template>
+  <ng-template #defaultNumber let-page let-currentPage="currentPage">
+    {{ page }}
+    <span *ngIf="page === currentPage" class="sr-only">(current)</span>
+  </ng-template>
+  <a
+    *ngIf="boundaryLinks"
+    [class.disabled]="previousDisabled()"
+    (click)="selectPage(1); $event.preventDefault()"
+    [attr.tabindex]="previousDisabled() ? '-1' : null"
+    [attr.aria-disabled]="previousDisabled() ? 'true' : null"
+  >
+    <ng-template
+      [ngTemplateOutlet]="first"
+      [ngTemplateOutletContext]="{
+        disabled: previousDisabled(),
+        currentPage: page
+      }"
+    ></ng-template>
+  </a>
+  <a
+    *ngIf="directionLinks"
+    [class.disabled]="previousDisabled()"
+    (click)="selectPage(page - 1); $event.preventDefault()"
+    [attr.tabindex]="previousDisabled() ? '-1' : null"
+    [attr.aria-disabled]="previousDisabled() ? 'true' : null"
+  >
+    <ng-template
+      [ngTemplateOutlet]="previous"
+      [ngTemplateOutletContext]="{ disabled: previousDisabled() }"
+    ></ng-template>
+  </a>
+  <ng-container *ngFor="let pageNumber of pages">
+    <a
+      *ngIf="isEllipsis(pageNumber)"
+      tabindex="-1"
+      aria-disabled="true"
+      [class.active]="pageNumber === page"
+      [class.disabled]="isEllipsis(pageNumber) || disabled"
+      [attr.aria-current]="pageNumber === page ? 'page' : null"
+    >
+      <ng-template
+        [ngTemplateOutlet]="ellipsis"
+        [ngTemplateOutletContext]="{ disabled: true, currentPage: page }"
+      ></ng-template>
+    </a>
+    <a
+      *ngIf="!isEllipsis(pageNumber)"
+      (click)="selectPage(pageNumber); $event.preventDefault()"
+      [attr.tabindex]="disabled ? '-1' : null"
+      [attr.aria-disabled]="disabled ? 'true' : null"
+      [class.active]="pageNumber === page"
+      [class.disabled]="isEllipsis(pageNumber) || disabled"
+      [attr.aria-current]="pageNumber === page ? 'page' : null"
+    >
+      <ng-template
+        [ngTemplateOutlet]="defaultNumber"
+        [ngTemplateOutletContext]="{
+          disabled: disabled,
+          $implicit: pageNumber,
+          currentPage: page
+        }"
+      ></ng-template>
+    </a>
+  </ng-container>
+  <a
+    (click)="selectPage(page + 1); $event.preventDefault()"
+    [attr.tabindex]="nextDisabled() ? '-1' : null"
+    [attr.aria-disabled]="nextDisabled() ? 'true' : null"
+    *ngIf="directionLinks"
+    [class.disabled]="nextDisabled()"
+  >
+    <ng-template
+      [ngTemplateOutlet]="next"
+      [ngTemplateOutletContext]="{
+        disabled: nextDisabled(),
+        currentPage: page
+      }"
+    ></ng-template>
+  </a>
+  <a
+    (click)="selectPage(pageCount); $event.preventDefault()"
+    [attr.tabindex]="nextDisabled() ? '-1' : null"
+    [attr.aria-disabled]="nextDisabled() ? 'true' : null"
+    *ngIf="boundaryLinks"
+    [class.disabled]="nextDisabled()"
+  >
+    <ng-template
+      [ngTemplateOutlet]="last"
+      [ngTemplateOutletContext]="{
+        disabled: nextDisabled(),
+        currentPage: page
+      }"
+    ></ng-template>
+  </a>
+
+  <ng-template #first>
+    <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+  </ng-template>
+  <ng-template #previous>
+    <i class="fa fa-angle-left" aria-hidden="true"></i>
+  </ng-template>
+  <ng-template #next>
+    <i class="fa fa-angle-right" aria-hidden="true"></i>
+  </ng-template>
+  <ng-template #last>
+    <i aria-hidden="true" class="fa fa-angle-double-right"></i>
+  </ng-template>
+</div>

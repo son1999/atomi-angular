@@ -1,0 +1,67 @@
+<div class="page-wrapper">
+  <div class="page-logo">
+    <app-logo-white></app-logo-white>
+  </div>
+  <div class="page-form">
+    <div class="form-header">
+      <div class="register-title" [routerLink]="['/register']">
+        <h2>Đăng ký</h2>
+      </div>
+      <div class="login-title">
+        <h2 class="title">Đăng nhập</h2>
+      </div>
+    </div>
+    <div class="form-container">
+      <ng-container *ngIf="showAlertVerified">
+        <p class="text-success text-center">Xác nhận tài khoản thành công!</p>
+      </ng-container>
+      <form class="form" [formGroup]="valForm" name="loginForm" role="form" class="form form-validate" (submit)="submit($event, valForm.value)">
+        <div class="form-field">
+          <label for="">Email <span class="require">*</span></label>
+          <input type="text" formControlName="email" autocomplete="off" />
+          <p class="text-danger form-field-message" *ngIf="hasError('email', 'required')">Vui lòng nhập email</p>
+        </div>
+        <div class="form-field">
+          <label for="">Mật khẩu <span class="require">*</span></label>
+          <input type="password" formControlName="password" autocomplete="off" placeholder="" [type]="hideIconEye ? 'password' : 'text'" />
+          <p class="text-danger form-field-message" *ngIf="hasError('password', 'required')">Vui lòng nhập mật khẩu</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <ngx-recaptcha2 #captchaElem class="captcha"
+            [siteKey]="siteKey"
+            [useGlobalDomain]="false"
+            size="normal"
+            hl="vi"
+            theme="light"
+            type="image"
+            formControlName="recaptcha">
+          </ngx-recaptcha2> 
+          </div>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-5 p-2">
+            <button class="btn btn-primary w-100" type="submit" [disabled]="isLoading$ | async">Đăng nhập</button>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <div class="capcha" *ngIf="needConfirmCapcha">x
+          </div>
+          <div class="enter-capcha" *ngIf="needConfirmCapcha">
+            <div class="form-field">
+              <input type="password" formControlName="password" autocomplete="off" placeholder="Nhập mã capcha" />
+              <p class="text-danger form-field-message" *ngIf="hasError('password', 'required')"></p>
+            </div>
+          </div>
+          <!-- <button class="btn btn-primary w-100" type="submit" [disabled]="isLoading$ | async">Đăng nhập</button> -->
+        </div>
+      </form>
+      <div class="forgot-password">
+        <a [routerLink]="['/forgot-password']">Quên mật khẩu ?</a>
+      </div>
+    </div>
+  </div>
+  <div class="box left"></div>
+  <div class="box right"></div>
+  <div class="box bottom"></div>
+</div>
