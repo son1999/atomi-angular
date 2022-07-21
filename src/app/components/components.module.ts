@@ -9,7 +9,6 @@ import { HeaderComponent } from './header/header.component';
 import { HeaderSecondComponent } from './header/header-second/header-second.component';
 import { LogoWhiteComponent } from './base/logo-white/logo-white.component';
 import { LogoComponent } from './base/logo/logo.component';
-import { FooterComponent } from './footer/footer.component';
 import { LoadingComponent } from './base/loading/loading.component';
 import { AboutUsComponent } from './base/about-us/about-us.component';
 import { ContactUsComponent } from './base/contact-us/contact-us.component';
@@ -20,7 +19,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxLoadingModule } from 'ngx-loading';
 import { UserBlockComponent } from './base/user-block/user-block.component';
-import { FooterSecondComponent } from './footer/footer-second/footer-second.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,14 +30,13 @@ import { FooterSecondComponent } from './footer/footer-second/footer-second.comp
     HeaderSecondComponent,
     LogoWhiteComponent,
     LogoComponent,
-    FooterComponent,
     LoadingComponent,
     AboutUsComponent,
     ContactUsComponent,
     ColLeftComponent,
     MenuComponent,
     UserBlockComponent,
-    FooterSecondComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -47,12 +45,8 @@ import { FooterSecondComponent } from './footer/footer-second/footer-second.comp
     AccordionModule,
     RouterModule,
     TranslateModule,
-    NgxLoadingModule
+    NgxLoadingModule,
   ],
-  exports: [
-    LogoWhiteComponent,
-    RouterModule,
-    LoadingComponent,
-  ]
+  exports: [LogoWhiteComponent, RouterModule, LoadingComponent],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}
